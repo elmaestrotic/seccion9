@@ -21,7 +21,7 @@ async function cargarUsuarios() {
 
     let listadoHtml = '';
     for (let usuario of usuarios) {
-        let botonEliminar = '<a href="#" onclick="deleteUser(' + usuario.id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
+        let botonEliminar = '<a href="#" onclick="eliminarUsuario(' + usuario.id + ')" class="btn btn-danger btn-circle btn-sm"><i class="fas fa-trash"></i></a>';
 
         let telefonoTexto = usuario.telefono == null ? '-' : usuario.telefono;
         let usuarioHtml = '<tr><td>'+usuario.id+'</td><td>' + usuario.nombre + ' ' + usuario.apellido + '</td><td>'
@@ -30,7 +30,8 @@ async function cargarUsuarios() {
         listadoHtml += usuarioHtml;
     }
 
-    document.querySelector('#usuarios tbody').outerHTML = listadoHtml;
+    //document.querySelector('#usuarios tbody').outerHTML = listadoHtml;
+
 
 }
 
@@ -49,7 +50,7 @@ async function deleteUser(id) {
         return;
     }
 
-    const request = await fetch('api/del_user/' + id, {
+    const request = await fetch('api/users/' + id, {
         method: 'DELETE',
         headers: getHeaders()
     });

@@ -16,6 +16,7 @@ import java.util.List;
 public class UsuarioController {
     @Autowired
     private UsuarioDao usuarioDao;
+    @Autowired
     private JWTUtil jwtUtil;
 
 
@@ -45,7 +46,7 @@ public class UsuarioController {
         usuarioDao.regUsuario(usuario);//
     }
 
-    @RequestMapping(value = "api/del_user/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "api/users/{id}", method = RequestMethod.DELETE)
     public void delUsuario(@RequestHeader(value = "Authorization") String token,
                            @PathVariable Long id) {
         if (!validarToken(token)) {
